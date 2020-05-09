@@ -1,0 +1,33 @@
+version: '3'
+services:
+  php:
+    build: .docker/images/php
+    volumes:
+      - .:/var/www/html
+    container_name: php
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - .:/var/www/html
+      - .docker/config/horizon.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8000:80"
+    container_name: nginx
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: horizon
+    ports:
+      - "3306:3306"
+    container_name: mysql
+
+  build-app:
+    image: composer
+    volumes:
+    - .:/app
+    command: install
+    container_name: composer

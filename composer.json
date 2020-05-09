@@ -1,0 +1,20 @@
+{
+    "name": "root/framework",
+    "authors": [
+        {
+            "name": "Axel Prouin",
+            "email": "axelprouin@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "src/"
+        }
+    },
+
+    "require": {
+        "symfony/var-dumper": "dev-master",
+        "ext-pdo": "*"
+    }
+}
